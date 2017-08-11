@@ -1,0 +1,32 @@
+html(lang="en")
+  head
+    title Books
+  body
+    #content
+      include includes/header.pug
+      #main
+        h1 Books
+        button Create New Book
+        ul.filters
+          li Filters
+          li
+            a All
+            span &nbsp;|
+          li
+            a Overdue
+            span &nbsp;|
+          li
+            a Checked Out
+        table
+          thead
+            tr
+              th Title
+              th Author
+              th Genre
+              th Year Released
+          tbody
+            tr
+              td x
+              td x
+              td x
+              td x
