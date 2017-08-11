@@ -6,13 +6,13 @@ var Book = require("./models").books;
 app.set('view engine', 'pug');
 
 app.get('/', function (req, res) {
-    Book.findAll().then(function(books){
-        res.render('index', {books: books});
-    });
+        res.render('index');
 });
 
 app.get('/books', function(req, res) {
-   res.render('books');
+    Book.findAll().then(function(books){
+    res.render('books', {books: books});
+    });
 });
 
 app.get('/patrons', function(req, res) {

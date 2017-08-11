@@ -25,8 +25,9 @@ html(lang="en")
               th Genre
               th Year Released
           tbody
-            tr
-              td x
-              td x
-              td x
-              td x
+            each book in books
+              tr
+                td= book.title
+                td= book.author
+                td= book.genre
+                td= book.first_published
