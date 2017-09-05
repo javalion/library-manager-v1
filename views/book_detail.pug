@@ -1,6 +1,8 @@
 html(lang="en")
   head
     title= book.title
+    link(rel="stylesheet" href="stylesheets/style.css")
+    link(rel="stylesheet" href="stylesheets/custom.css")
   body
     #content
       include includes/header.pug
@@ -18,7 +20,7 @@ html(lang="en")
             input(id="genre" name="genre" type="text" value=book.genre)
           p
             label(for="first_published") First Published
-            input(id="first_published" name="first_published" type="number" value=book.first_published)
+            input(id="first_published" name="first_published" type="text" value=book.first_published)
           p
             input(type="submit" value="Update")
       h2 Loan History
