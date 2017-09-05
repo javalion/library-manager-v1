@@ -24,13 +24,15 @@ fs
     db[model.name] = model;
   });
 
-Object.keys(db).forEach(function(modelName) {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
-
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+// Setup Associations
+db.books.hasMany(db.loans);
+db.loans.belongsTo(db.books);
+db.loans.belongsTo(db.patrons);
+db.patrons.hasMany(db.loans);
+
+
 
 module.exports = db;

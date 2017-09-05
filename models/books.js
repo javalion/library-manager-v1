@@ -1,19 +1,16 @@
 'use strict';
-module.exports = function(sequelize, DataTypes) {
-  var Book = sequelize.define('books', {
-    id: {type: DataTypes.INTEGER, primaryKey: true},
-    title: DataTypes.STRING,
-    author: DataTypes.STRING,
-    genre: DataTypes.STRING,
-    first_published: DataTypes.INTEGER
-  }, {
-    timestamps: false,
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
+const Sequelize = require('Sequelize');
 
-  });
-  return Book;
+module.exports = function(sequelize, DataTypes) {
+    var Book = sequelize.define('books', {
+        id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
+        title: Sequelize.STRING,
+        author: Sequelize.STRING,
+        genre: Sequelize.STRING,
+        first_published: Sequelize.INTEGER
+    }, {
+        timestamps: false,
+        underscored: true
+    });
+    return Book;
 };

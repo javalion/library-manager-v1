@@ -1,0 +1,38 @@
+html(lang="en")
+  head
+    title Loans
+  body
+    #content
+      include includes/header.pug
+      #main
+        h1 Loans
+        a(href='/new_loan')
+          button Create New Loan
+        ul.filters
+          li Filters
+          li
+            a(href="/loans") All
+            span &nbsp;|
+          li
+            a(href="/loans?filter=overdue") Overdue
+            span &nbsp;|
+          li
+            a(href="/loans?filter=checkedout") Checked Out
+        table
+          thead
+            tr
+              th Book
+              th Patron
+              th Loaned On
+              th Return By
+              th Returned On
+              th Action
+          tbody
+            each loan in loans
+              tr
+                td= loan.book.title
+                td= loan.patron.first_name + " " + loan.patron.last_name
+                td= loan.loaned_on
+                td= loan.return_by
+                td= loan.returned_on
+                td Return Book

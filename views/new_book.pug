@@ -1,0 +1,23 @@
+html(lang="en")
+  head
+    title New Book
+  body
+    #content
+      include includes/header.pug
+      #main
+        h1 New Book
+        form(action="/new_book" method="POST" enctype="application/x-www-form-urlencoded")
+          p
+            label(for="title") Title
+            input(id="title" name="title" type="text")
+          p
+            label(for="author") Author
+            input(id="author" name="author" type="text")
+          p
+            label(for="genre") Genre
+            input(id="genre" name="genre" type="text")
+          p
+            label(for="first_published") First Published
+            input(id="first_published" name="first_published" type="number")
+          p
+            input(type="submit" value="Create New Book")

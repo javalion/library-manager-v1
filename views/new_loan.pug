@@ -1,0 +1,28 @@
+html(lang="en")
+  head
+    title New Loan
+    - function formatDate(date, daysToAdvance) {if (daysToAdvance) {date.setDate(date.getDate() + daysToAdvance);} var year = date.getFullYear(); var month = date.getMonth() + 1; month = month < 10 ? "0" + month : month; var day = date.getDate(); day = day < 10 ? "0" + day : day; var formattedDate = year + '-' + month + '-' + day; return formattedDate;}
+  body
+    #content
+      include includes/header.pug
+      #main
+        h1 New Loan
+        form(action="/new_loan" method="POST" enctype="application/x-www-form-urlencoded")
+          p
+            label(for="book") Book
+            select(id="book" name="book")
+              for book in books
+                option(value=book.id)= book.title
+          p
+            label(for="patron") Patron
+            select(id="patron" name="patron")
+              for patron in patrons
+                option(value=patron.id)= patron.first_name + " " + patron.last_name
+          p
+            label(for="loanedOn") Loaned On
+            input(id="loanedOn" name="loanedOn" value=formatDate(new Date()))
+          p
+            label(for="returnBy") Return By
+            input(id="returnBy" name="returnBy" value=formatDate(new Date(), 7))
+          p
+            input(type="submit" value="Create New Loan")

@@ -6,17 +6,18 @@ html(lang="en")
       include includes/header.pug
       #main
         h1 Books
-        button Create New Book
+        a(href='/new_book')
+          button Create New Book
         ul.filters
           li Filters
           li
-            a All
+            a(href="/books") All
             span &nbsp;|
           li
-            a Overdue
+            a(href="/books?filter=overdue") Overdue
             span &nbsp;|
           li
-            a Checked Out
+            a(href="/books?filter=checkedout") Checked Out
         table
           thead
             tr
@@ -27,7 +28,8 @@ html(lang="en")
           tbody
             each book in books
               tr
-                td= book.title
+                td
+                  a(href='book_detail?id=' + book.id)= book.title
                 td= book.author
                 td= book.genre
                 td= book.first_published

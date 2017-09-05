@@ -1,6 +1,7 @@
 html(lang="en")
   head
     title Library Manager
+    link(rel="stylesheet" href="stylesheets/style.css")
   body
     #content
       include includes/header.pug
@@ -8,22 +9,29 @@ html(lang="en")
         h1 Library Manager
         p Welcome to Library Manager
 
-        h2 Books
         ul
-          li New Book
-          li List All
-          li List Overdue
-          li List Checked Out
-
-        h2 Patrons
+          li Books
+          li
+            a(href="/new_book") New Book
+          li
+            a(href="/books") List All
+          li
+            a(href="/books?filter=overdue") List Overdue
+          li
+            a(href="/books?filter=checkedout") List Checked Out
         ul
-          li New Patron
-          li List All
-
-        h2 Loans
-        p= myString
+          li Patrons
+          li
+            a(href="/new_patron") New Patron
+          li
+            a(href="/patrons") List All
         ul
-          li New Loan
-          li List All
-          li List Overdue
-          li List Checked Out
+          li Loans
+          li
+            a(href="/new_loan")  New Loan
+          li
+            a(href="/loans") List All
+          li
+            a(href="/loans?filter=overdue") List Overdue
+          li
+            a(href="/loans?fitler=checkedout") List Checked Out
