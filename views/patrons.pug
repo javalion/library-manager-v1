@@ -1,13 +1,15 @@
 html(lang="en")
   head
     title Patrons
+    link(rel="stylesheet" href="stylesheets/style.css")
+    link(rel="stylesheet" href="stylesheets/custom.css")
   body
     #content
       include includes/header.pug
       #main
         h1 Patrons
-        a(href='/new_patron')
-          button Create New Patron
+        a.button(href='/new_patron') Create New Patron
+        div &nbsp;
         table
           thead
             tr
