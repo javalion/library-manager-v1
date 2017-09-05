@@ -1,21 +1,20 @@
 html(lang="en")
   head
     title Loans
+    link(rel="stylesheet" href="stylesheets/style.css")
+    link(rel="stylesheet" href="stylesheets/custom.css")
   body
     #content
       include includes/header.pug
       #main
         h1 Loans
-        a(href='/new_loan')
-          button Create New Loan
+        a.button(href='/new_loan') Create New Loan
         ul.filters
           li Filters
           li
             a(href="/loans") All
-            span &nbsp;|
           li
             a(href="/loans?filter=overdue") Overdue
-            span &nbsp;|
           li
             a(href="/loans?filter=checkedout") Checked Out
         table
