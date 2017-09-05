@@ -1,6 +1,8 @@
 html(lang="en")
   head
     title New Loan
+    link(rel="stylesheet" href="stylesheets/style.css")
+    link(rel="stylesheet" href="stylesheets/custom.css")
     - function formatDate(date, daysToAdvance) {if (daysToAdvance) {date.setDate(date.getDate() + daysToAdvance);} var year = date.getFullYear(); var month = date.getMonth() + 1; month = month < 10 ? "0" + month : month; var day = date.getDate(); day = day < 10 ? "0" + day : day; var formattedDate = year + '-' + month + '-' + day; return formattedDate;}
   body
     #content
