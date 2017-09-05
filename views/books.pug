@@ -2,20 +2,20 @@ html(lang="en")
   head
     title Books
     link(rel="stylesheet" href="stylesheets/style.css")
+    link(rel="stylesheet" href="stylesheets/custom.css")
   body
     #content
       include includes/header.pug
       #main
         h1 Books
-        a(href='/new_book' class='button') Create New Book
+        div
+          a(href='/new_book' class='button') Create New Book
         ul.filters
-          li Filters
+          li.nodivide Filters
           li
             a(href="/books") All
-            span &nbsp;|
           li
             a(href="/books?filter=overdue") Overdue
-            span &nbsp;|
           li
             a(href="/books?filter=checkedout") Checked Out
         table
