@@ -21,7 +21,8 @@ html(lang="en")
           tbody
             each patron in patrons
               tr
-                td= patron.first_name + " " + patron.last_name
+                td
+                 a(href='/patron_detail?id=' + patron.id)= patron.first_name + " " + patron.last_name
                 td= patron.address
                 td= patron.email
                 td= patron.library_id

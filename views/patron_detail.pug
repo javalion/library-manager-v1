@@ -1,0 +1,61 @@
+html(lang="en")
+  head
+    title= patron.first_name + " " + patron.last_name
+    link(rel="stylesheet" href="stylesheets/style.css")
+    link(rel="stylesheet" href="stylesheets/custom.css")
+  body
+    #content
+      include includes/header.pug
+      #main
+        h1= "Patron: " + patron.first_name + " " + patron.last_name
+        form(action="/update_patron" method="POST" enctype="application/x-www-form-urlencoded")
+          input(type="hidden" name="id" value=patron.id)
+          p
+            label(for="first_name") First Name
+            input(id="first_name" name="first_name" type="text" onkeyup="validateField('first_name')" value=patron.first_name)
+            span(id="first_name_error" class="error") Required
+          p
+            label(for="last_name") Last Name
+            input(id="last_name" name="last_name" type="text" onkeyup="validateField('last_name')" value=patron.last_name)
+            span(id="last_name_error" class="error") Required
+          p
+            label(for="address") Address
+            input(id="address" name="address" type="text" onkeyup="validateField('address')" value=patron.address)
+            span(id="address_error" class="error") Required
+          p
+            label(for="email") Email
+            input(id="email" name="email" type="text" onkeyup="validateField('email')" value=patron.email)
+            span(id="email_error" class="error") Required
+          p
+            label(for="library_id") Library ID
+            input(id="library_id" name="library_id" type="text" onkeyup="validateField('library_id')" value=patron.library_id)
+            span(id="library_id_error" class="error") Required
+          p
+            label(for="zip_code") Zip Code
+            input(id="zip_code" name="zip_code" type="text" onkeyup="validateField('zip_code')" value=patron.zip_code)
+            span(id="zip_code_error" class="error") Required
+          p
+            input(type="submit" onclick="return validatePatronForm()" value="Update")
+      h2 Loan History
+      table
+        thead
+          tr
+            th Book
+            th Patron
+            th Loaned On
+            th Return By
+            th Returned On
+            th Action
+        tbody
+          each loan in loans
+            tr
+              td
+                a(href="book_detail?id=" + loan.book.id)= loan.book.title
+              td
+                a(href="patron_detail?id=" + patron.id)= patron.first_name + ' ' + patron.last_name
+              td= loan.loaned_on
+              td= loan.return_by
+              td= loan.returned_on
+              td
+                a(href="return_book?book_id=" + loan.book.id + "&patron_id=" + patron.id class="button") Return Book
+    script(src="js/main.js" type="text/javascript" charset="UTF-8")

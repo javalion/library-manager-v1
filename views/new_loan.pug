@@ -11,20 +11,23 @@ html(lang="en")
         h1 New Loan
         form(action="/new_loan" method="POST" enctype="application/x-www-form-urlencoded")
           p
-            label(for="book") Book
-            select(id="book" name="book")
+            label(for="book_id") Book
+            select(id="book_id" name="book_id")
               for book in books
                 option(value=book.id)= book.title
           p
-            label(for="patron") Patron
-            select(id="patron" name="patron")
+            label(for="patron_id") Patron
+            select(id="patron_id" name="patron_id")
               for patron in patrons
                 option(value=patron.id)= patron.first_name + " " + patron.last_name
           p
-            label(for="loanedOn") Loaned On
-            input(id="loanedOn" name="loanedOn" value=formatDate(new Date()))
+            label(for="loaned_on") Loaned On
+            input(id="loaned_on" name="loaned_on" onkeyup="validateDateField('loaned_on', true)" value=formatDate(new Date()))
+            span(id="loaned_on_error" class="error") Required: YYYY-MM-DD
           p
-            label(for="returnBy") Return By
-            input(id="returnBy" name="returnBy" value=formatDate(new Date(), 7))
+            label(for="return_by") Return By
+            input(id="return_by" name="return_by" onkeyup="validateDateField('return_by', false)" value=formatDate(new Date(), 7))
+            span(id="return_by_error" class="error") Optional: YYYY-MM-DD
           p
-            input(type="submit" value="Create New Loan")
+            input(type="submit" onclick="return validateNewLoanForm()" value="Create New Loan")
+    script(src="js/main.js" type="text/javascript" charset="UTF-8")

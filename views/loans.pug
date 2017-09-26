@@ -29,9 +29,16 @@ html(lang="en")
           tbody
             each loan in loans
               tr
-                td= loan.book.title
-                td= loan.patron.first_name + " " + loan.patron.last_name
+                td
+                  a(href="/book_detail?id=" + loan.book.id)= loan.book.title
+                td
+                  a(href="/patron_detail?id=" + loan.patron.id)= loan.patron.first_name + " " + loan.patron.last_name
                 td= loan.loaned_on
-                td= loan.return_by
+                if loan.return_by != "Invalid date"
+                  td= loan.return_by
+                else
+                  td
                 td= loan.returned_on
-                td Return Book
+                td
+                  if !loan.returned_on
+                    a.button(href="return_book?book_id=" + loan.book.id + "&patron_id=" + loan.patron.id) Return Book

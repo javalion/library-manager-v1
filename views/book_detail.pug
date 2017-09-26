@@ -9,20 +9,24 @@ html(lang="en")
       #main
         h1= book.title
         form(action="/update_book" method="POST" enctype="application/x-www-form-urlencoded")
+          input(id="id" name="id" type="hidden" value=book.id)
           p
             label(for="title") Title
-            input(id="title" name="title" type="text" value=book.title)
+            input(id="title" name="title" type="text" onkeyup="validateField('title')" value=book.title)
+            span(id="title_error" class="error") Required
           p
             label(for="author") Author
-            input(id="author" name="author" type="text" value=book.author)
+            input(id="author" name="author" type="text" onkeyup="validateField('author')" value=book.author)
+            span(id="author_error" class="error") Required
           p
             label(for="genre") Genre
-            input(id="genre" name="genre" type="text" value=book.genre)
+            input(id="genre" name="genre" type="text" onkeyup="validateField('genre')" value=book.genre)
+            span(id="genre_error" class="error") Required
           p
             label(for="first_published") First Published
             input(id="first_published" name="first_published" type="text" value=book.first_published)
           p
-            input(type="submit" value="Update")
+            input(type="submit" onclick="return validateNewBookForm()" value="Update")
       h2 Loan History
       table
         thead
@@ -37,8 +41,11 @@ html(lang="en")
           each loan in book.loans
             tr
               td= book.title
-              td= loan.patron.first_name + ' ' + loan.patron.last_name
+              td
+                a(href="patron_detail?id=" + loan.patron.id)= loan.patron.first_name + ' ' + loan.patron.last_name
               td= loan.loaned_on
               td= loan.return_by
               td= loan.returned_on
-              td Return Book
+              td
+                a(href="return_book?book_id=" + book.id + "&patron_id=" + loan.patron.id class="button") Return Book
+      script(src="js/main.js" type="text/javascript" charset="UTF-8")

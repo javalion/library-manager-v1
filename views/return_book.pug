@@ -1,0 +1,23 @@
+html(lang="en")
+  head
+    title Return Book
+    link(rel="stylesheet" href="stylesheets/style.css")
+    link(rel="stylesheet" href="stylesheets/custom.css")
+    - function formatDate(date, daysToAdvance) {if (daysToAdvance) {date.setDate(date.getDate() + daysToAdvance);} var year = date.getFullYear(); var month = date.getMonth() + 1; month = month < 10 ? "0" + month : month; var day = date.getDate(); day = day < 10 ? "0" + day : day; var formattedDate = year + '-' + month + '-' + day; return formattedDate;}
+  body
+    #content
+      include includes/header.pug
+      #main
+        h1 Patron: Return Book
+        form(action="/return_book" method="POST" enctype="application/x-www-form-urlencoded")
+          input(id="id" name="id" type="hidden" value=loan.id)
+          p #[strong Book Title:] !{loan.book.title}
+          p #[strong Loaned By:] !{patron.first_name + ' ' + patron.last_name}
+          p #[strong Loaned On:] !{loan.loaned_on.substring(0,10)}
+          p #[strong Return By:] !{loan.return_by.substring(0,10)}
+          p #[strong Returned On:]
+            input(type="text" id="returned_on" name="returned_on" onkeyup="validateDateField('returned_on', true)" value=formatDate(new Date()))
+            span(id="returned_on_error" class="error") Required: YYYY-MM-DD
+          p
+            input(type="submit" onclick="return validateReturnBookForm()" value="Return Book")
+    script(src="js/main.js" type="text/javascript" charset="UTF-8")
